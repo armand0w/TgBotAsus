@@ -27,18 +27,19 @@ jobs:
           ref: 'develop'
           repository: 'armand0w/DBSQLite'
           path: DBSQLite
-        run: mvn --batch-mode -f DBSQLite/pom.xml -DskipTests install -e -B
 
       - name: Clone TgBotApi
         uses: actions/checkout@v4
         with:
           ref: 'develop'
-          repository: 'armand0w/tgBotApi'
-          path: tgBotApi
-        run: mvn --batch-mode -f tgBotApi/pom.xml -DskipTests install -e -B
+          repository: 'armand0w/TgBotApi'
+          path: TgBotApi
 
       - name: Build
-        run: mvn --batch-mode -DskipTests -e -B package
+        run: |
+          mvn --batch-mode -f DBSQLite/pom.xml -DskipTests install -e -B
+          mvn --batch-mode -f TgBotApi/pom.xml -DskipTests install -e -B
+          mvn --batch-mode -DskipTests -e -B package
 
       - name: Test
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true -e -B test
