@@ -1,0 +1,25 @@
+{
+  "sentry": {
+    "dsn": "",
+    "environment": "test"
+  },
+  "bot": {
+    "token": "0123456789:tokenFromBotFather",
+    "username": "my_tg_bot",
+    "userId": "0987654321"
+  },
+  "router": {
+    "agent": "asusrouter-Android-DUTUtil-1.0.0.X.XX",
+    "ip": "http://192.168.99.1",
+    "user": "admin",
+    "password": "mystrongpass"
+  },
+  "scheduler": {
+    "updateDevicesStatus": 30,
+    "updateDevicesMetadata": 60,
+    "notifyInterval": 10
+  },
+  "datasource": {
+    "schema": "botAsus.db"
+  }
+}
