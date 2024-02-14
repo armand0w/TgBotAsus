@@ -21,8 +21,33 @@ jobs:
           java-version: '21'
           cache: maven
 
+      - name: Clone DBSQLite
+        uses: actions/checkout@v4
+        with:
+          ref: 'develop'
+          repository: 'armand0w/DBSQLite'
+          path: DBSQLite
+
+      - name: Clone TgBotApi
+        uses: actions/checkout@v4
+        with:
+          ref: 'develop'
+          repository: 'armand0w/TgBotApi'
+          path: TgBotApi
+
+      - name: Storing config
+        run: echo "${{ secrets.CONFIG }}" | base64 --decode > config.json
+
       - name: Build
-        run: mvn --batch-mode -DskipTests -e -B package
+        run: |
+          mvn --batch-mode -f DBSQLite/pom.xml -DskipTests install -e -B
+          mvn --batch-mode -f TgBotApi/pom.xml -DskipTests install -e -B
+          mvn --batch-mode -DskipTests -e -B package
+
+      - name: Set TZ
+        uses: szenius/set-timezone@v1.2
+        with:
+          timezoneLinux: "America/Mexico_City"
 
       - name: Test
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true -e -B test
