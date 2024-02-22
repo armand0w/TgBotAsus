@@ -18,7 +18,7 @@
 
     <sqlite-jdbc.version>3.45.1.0</sqlite-jdbc.version>
 
-    <sentry.version>7.3.0</sentry.version>
+    <sentry.version>7.4.0</sentry.version>
     <lombok.version>1.18.30</lombok.version>
     <slf4j.version>2.0.12</slf4j.version>
     <junit.version>5.10.2</junit.version>
