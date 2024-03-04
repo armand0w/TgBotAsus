@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  bot:
+    build:
+      context: ../../../../
+      dockerfile: src/test/resources/tgBotAsus/local.dockerfile
+#    image: armand0w/tgbotasus:latest
+    container_name: tgBotAsus
+    hostname: docker
+    restart: "no"
+    environment:
+      TZ: America/Mexico_City
+      BOT_TOKEN: <telegram bot token>
+      USER_ID: <user id for notify>

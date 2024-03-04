@@ -1,0 +1,59 @@
+{
+  "get_clientlist": {
+    "2A:1F:C5:7D:EF:F2": {
+      "type": "43",
+      "defaultType": "22",
+      "name": "Google-Home-Mini",
+      "nickName": "Google Home Mini",
+      "ip": "192.168.50.32",
+      "mac": "2A:1F:C5:7D:EF:F2",
+      "from": "networkmapd",
+      "macRepeat": "0",
+      "isGateway": "0",
+      "isWebServer": "0",
+      "isPrinter": "0",
+      "isITunes": "0",
+      "dpiType": "",
+      "dpiDevice": "",
+      "vendor": "dhcpcd-6.8.2:Linux-3.8.13+:armv",
+      "isWL": "2",
+      "isGN": "",
+      "ssid": "",
+      "isLogin": "0",
+      "opMode": "0",
+      "rssi": "-59",
+      "curTx": "292.5",
+      "curRx": "433.3",
+      "totalTx": "",
+      "totalRx": "",
+      "wlConnectTime": "05:27:07",
+      "ipMethod": "Manual",
+      "ROG": "0",
+      "group": "",
+      "callback": "",
+      "keeparp": "",
+      "qosLevel": "",
+      "wtfast": "0",
+      "internetMode": "time",
+      "internetState": 1,
+      "amesh_isReClient": "1",
+      "amesh_papMac": "04:92:26:82:08:F0",
+      "isOnline": "1",
+      "amesh_bind_mac": "",
+      "amesh_bind_band": "0"
+    },
+    "maclist": [
+      "2A:1F:C5:7D:EF:F2"
+    ],
+    "ClientAPILevel": "5"
+  },
+  "wl_sta_list_2g": {
+  },
+  "wl_sta_list_5g": {
+    "2A:1F:C5:7D:EF:F2": {
+      "isWL": "Yes",
+      "rssi": "-61"
+    }
+  },
+  "wl_sta_list_5g_2": {}
+}
