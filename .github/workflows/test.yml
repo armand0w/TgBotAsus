@@ -2,8 +2,6 @@ name: Maven test
 
 on:
   push:
-    branches:
-      - develop
     branches-ignore:
       - dependencies
       - main
