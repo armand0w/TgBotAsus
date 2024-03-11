@@ -46,6 +46,8 @@ jobs:
           mvn --batch-mode -f DBSQLite/pom.xml -DskipTests install -e -B
           mvn --batch-mode -f TgBotApi/pom.xml -DskipTests install -e -B
           mvn --batch-mode -DskipTests -e -B package
+        with:
+          cache: maven
 
       - name: Set TZ
         uses: szenius/set-timezone@v1.2
@@ -57,6 +59,8 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           USER_ID: ${{ secrets.USER_ID }}
+        with:
+          cache: maven
 
       - name: Report
         uses: dorny/test-reporter@v1
