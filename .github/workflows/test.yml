@@ -2,9 +2,8 @@ name: Maven test
 
 on:
   push:
-    branches-ignore:
-      - dependencies
-      - main
+    branches:
+      - develop
   workflow_dispatch:
 
 permissions: write-all
