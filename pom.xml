@@ -4,7 +4,7 @@
 
   <groupId>com.armandow.devices</groupId>
   <artifactId>TgBotAsus</artifactId>
-  <version>0.5.0</version>
+  <version>0.5.1</version>
   <packaging>jar</packaging>
 
   <name>TgBotAsus</name>
@@ -40,7 +40,7 @@
     <dependency>
       <groupId>com.armandow</groupId>
       <artifactId>TgBotApi</artifactId>
-      <version>0.0.5</version>
+      <version>0.1.6</version>
     </dependency>
 
     <!-- SQLite -->

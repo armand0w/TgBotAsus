@@ -16,8 +16,22 @@ RUN mvn -f ./TgBotAsus/pom.xml clean compile package -DskipTests
 FROM azul/zulu-openjdk-alpine:21-jre-headless-latest
 LABEL author="Armando Castillo"
 
+RUN apk add --no-cache sudo
+ARG USERNAME=tgbot
+RUN adduser --gecos "$USERNAME" \
+    --disabled-password \
+    --shell /bin/sh \
+    --uid 1000 \
+    ${USERNAME} && \
+    echo "$USERNAME:1234" | chpasswd && \
+    echo "$USERNAME ALL=(ALL) ALL" > /etc/sudoers.d/"$USERNAME" && chmod 0440 /etc/sudoers.d/"$USERNAME" \
+    && addgroup ${USERNAME} wheel \
+    && addgroup ${USERNAME} ${USERNAME}
+
 WORKDIR /opt/app
-RUN mkdir logs
+RUN chown -R ${USERNAME}:${USERNAME} /opt/app
+
+USER ${USERNAME}
 
 COPY --from=builder /opt/builder/TgBotAsus/target/TgBotAsus.jar TgBotAsus.jar
 
