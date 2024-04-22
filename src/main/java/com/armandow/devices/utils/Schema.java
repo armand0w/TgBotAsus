@@ -21,8 +21,8 @@ public class Schema {
                         `c_is_online`     TEXT     DEFAULT 'N',
                         `d_register_date` DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime')),
                         `d_update_date`   DATETIME DEFAULT NULL
-                    )""");            
-            
+                    )""");
+
             DevicesUtils.getDbConnection().executeUpdate("""
                     CREATE TABLE `connection_logs`
                     (
@@ -32,7 +32,7 @@ public class Schema {
                         "d_date"         DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP, 'localtime')),
                         CONSTRAINT "logs_device_id_fk" FOREIGN KEY ("i_device_id_fk") REFERENCES "device" ("i_id") ON DELETE NO ACTION ON UPDATE NO ACTION
                     )""");
-            
+
             DevicesUtils.getDbConnection().executeUpdate("""
                     CREATE TRIGGER `device_ai`
                         AFTER INSERT
@@ -42,7 +42,7 @@ public class Schema {
                         INSERT INTO connection_logs(i_id, i_device_id_fk, v_type, d_date)
                         VALUES ((SELECT COUNT(1) FROM connection_logs), NEW.i_id, 'CHECKIN', DATETIME(CURRENT_TIMESTAMP, 'localtime'));
                     END""");
-            
+
             DevicesUtils.getDbConnection().executeUpdate("""
                     CREATE TRIGGER `device_au`
                         AFTER UPDATE
@@ -50,7 +50,7 @@ public class Schema {
                     BEGIN
                         INSERT INTO connection_logs(i_id, i_device_id_fk, v_type, d_date)
                         VALUES ((SELECT COUNT(1) FROM connection_logs), NEW.i_id, IIF(NEW.c_is_online = 'S', 'CHECKIN', 'CHECKOUT'), DATETIME(CURRENT_TIMESTAMP, 'localtime'));
-                                        
+
                         UPDATE device SET d_update_date = DATETIME(CURRENT_TIMESTAMP, 'localtime') WHERE i_id = NEW.i_id;
                     END""");
         } catch (Exception ex) {
