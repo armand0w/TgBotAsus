@@ -4,7 +4,7 @@
 
   <groupId>com.armandow.devices</groupId>
   <artifactId>TgBotAsus</artifactId>
-  <version>0.5.0</version>
+  <version>0.5.1</version>
   <packaging>jar</packaging>
 
   <name>TgBotAsus</name>
@@ -16,18 +16,18 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <sqlite-jdbc.version>3.45.2.0</sqlite-jdbc.version>
+    <sqlite-jdbc.version>3.45.3.0</sqlite-jdbc.version>
 
     <sentry.version>7.8.0</sentry.version>
     <lombok.version>1.18.32</lombok.version>
-    <slf4j.version>2.0.12</slf4j.version>
+    <slf4j.version>2.0.13</slf4j.version>
     <junit.version>5.10.2</junit.version>
     <junit-suite.version>1.10.2</junit-suite.version>
     <mockito.version>5.11.0</mockito.version>
     <jacoco.version>0.8.12</jacoco.version>
     <surefire-plugin.version>3.2.5</surefire-plugin.version>
     <shade-plugin.version>3.5.2</shade-plugin.version>
-    <maven-jar.version>3.3.0</maven-jar.version>
+    <maven-jar.version>3.4.1</maven-jar.version>
     <awaitility.version>4.2.1</awaitility.version>
   </properties>
 
@@ -40,7 +40,7 @@
     <dependency>
       <groupId>com.armandow</groupId>
       <artifactId>TgBotApi</artifactId>
-      <version>0.0.5</version>
+      <version>0.1.6</version>
     </dependency>
 
     <!-- SQLite -->
