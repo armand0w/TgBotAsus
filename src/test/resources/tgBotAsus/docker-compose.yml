@@ -13,7 +13,3 @@ services:
       TZ: America/Mexico_City
       BOT_TOKEN: <telegram bot token>
       USER_ID: <user id for notify>
-#      volumes:
-#        - ./logs/:/opt/app/logs/
-#        - ./config.json:/opt/app/config.json
-#        - ./TgBotAsus.db:/opt/app/TgBotAsus.db
