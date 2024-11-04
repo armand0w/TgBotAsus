@@ -25,7 +25,7 @@
     <junit-suite.version>1.11.3</junit-suite.version>
     <mockito.version>5.14.2</mockito.version>
     <jacoco.version>0.8.12</jacoco.version>
-    <surefire-plugin.version>3.5.1</surefire-plugin.version>
+    <surefire-plugin.version>3.5.2</surefire-plugin.version>
     <shade-plugin.version>3.6.0</shade-plugin.version>
     <maven-jar.version>3.4.2</maven-jar.version>
     <awaitility.version>4.2.2</awaitility.version>
