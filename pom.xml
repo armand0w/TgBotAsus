@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <sqlite-jdbc.version>3.47.1.0</sqlite-jdbc.version>
+    <sqlite-jdbc.version>3.47.2.0</sqlite-jdbc.version>
 
     <sentry.version>7.19.1</sentry.version>
     <lombok.version>1.18.36</lombok.version>
