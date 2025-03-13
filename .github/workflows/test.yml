@@ -58,7 +58,7 @@ jobs:
           USER_ID: ${{ secrets.USER_ID }}
 
       - name: Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         if: always()
         with:
           name: Maven Tests
