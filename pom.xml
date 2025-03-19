@@ -21,7 +21,7 @@
     <sentry.version>8.5.0</sentry.version>
     <lombok.version>1.18.36</lombok.version>
     <slf4j.version>2.0.17</slf4j.version>
-    <junit.version>5.12.0</junit.version>
+    <junit.version>5.12.1</junit.version>
     <junit-suite.version>1.12.1</junit-suite.version>
     <mockito.version>5.16.1</mockito.version>
     <jacoco.version>0.8.12</jacoco.version>
