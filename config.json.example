@@ -4,9 +4,7 @@
     "environment": "test"
   },
   "bot": {
-    "token": "0123456789:tokenFromBotFather",
-    "username": "my_tg_bot",
-    "userId": "0987654321"
+    "token": "0123456789:tokenFromBotFather"
   },
   "router": {
     "agent": "asusrouter-Android-DUTUtil-1.0.0.X.XX",
@@ -20,6 +18,6 @@
     "notifyInterval": 10
   },
   "datasource": {
-    "schema": "botAsus.db"
+    "schema": "testBotAsus.db"
   }
 }
