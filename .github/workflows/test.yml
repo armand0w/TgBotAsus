@@ -56,9 +56,10 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           USER_ID: ${{ secrets.USER_ID }}
+          TZ: America/Mexico_City
 
       - name: Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v2
         if: always()
         with:
           name: Maven Tests

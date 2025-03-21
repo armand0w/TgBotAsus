@@ -6,8 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SuppressWarnings({"java:S5786"})
@@ -27,6 +26,9 @@ public class ASUSServiceTest {
     void testGetAllClients() throws Exception {
         var clients = ASUSService.getAllClients();
         assertNotNull(clients);
+        assertTrue(clients.has("get_clientlist"));
+        assertTrue(clients.has("wl_sta_list_2g"));
+        assertTrue(clients.has("wl_sta_list_5g"));
         log.debug(clients.toString());
     }
 
