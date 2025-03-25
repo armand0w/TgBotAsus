@@ -1,0 +1,53 @@
+name: TgBotAsus
+
+volumes:
+  bot_db:
+
+services:
+  bot:
+    build:
+      context: .
+    container_name: tgBotAsus
+    hostname: tgBotAsus
+    restart: "always"
+    volumes:
+      - bot_db:/opt/db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Mexico_City
+      - BOT_TOKEN=0123456789:tokenFromBotFather
+      - USER_ID=777777777
+    configs:
+      - source: bot_config
+        target: /home/tgbot/config.json
+        mode: 0644
+        gid: "1000"
+        uid: "1000"
+
+configs:
+  bot_config:
+    content: |
+      {
+        "sentry": {
+          "dsn": "",
+          "environment": "test"
+        },
+        "bot": {
+            "username": "raspgram_armand0w_bot"
+        },
+        "router": {
+          "agent": "asusrouter-Android-DUTUtil-1.0.0.X.XX",
+          "ip": "http://10.0.9.1",
+          "user": "user",
+          "password": "mystrongpass"
+        },
+        "scheduler": {
+          "updateDevicesStatus": 30,
+          "updateDevicesMetadata": 60,
+          "notifyInterval": 10
+        },
+        "datasource": {
+          "schema": "/opt/db/TgBotASUS.db"
+        }
+      }
