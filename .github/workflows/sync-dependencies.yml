@@ -1,0 +1,31 @@
+name: Sync Dependencies Branch
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Sync dependencies branch
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout dependencies
+          # Intentar merge con --squash y -X theirs para manejar conflictos
+          if ! git merge develop --squash -X theirs; then
+            echo "⚠️ Merge conflict detected"
+            git merge --abort
+            exit 1
+          fi
+          git commit -m "chore: sync with develop branch (squashed)"
+          git push origin dependencies
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
