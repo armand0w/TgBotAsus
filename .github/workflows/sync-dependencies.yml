@@ -1,0 +1,45 @@
+name: Sync Dependencies Branch
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Sync dependencies branch
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout dependencies
+          
+          # Get list of deleted files in develop
+          deleted_files=$(git diff --diff-filter=D --name-only dependencies..develop)
+          
+          # Remove deleted files from dependencies branch
+          if [ ! -z "$deleted_files" ]; then
+            echo "Removing deleted files from dependencies branch..."
+            for file in $deleted_files; do
+              git rm -f "$file" || true
+            done
+            git commit -m "chore: remove deleted files" || true
+          fi
+          
+          # Attempt merge with theirs strategy
+          if ! git merge develop --squash -X theirs; then
+            echo "⚠️ Merge conflict detected"
+            git merge --abort || true
+            exit 1
+          fi
+          
+          git commit -m "chore: sync with develop branch (squashed)"
+          git push origin dependencies
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
