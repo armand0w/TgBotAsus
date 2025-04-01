@@ -11,6 +11,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Dependabot metadata
         id: dependabot-metadata
@@ -26,6 +27,35 @@ jobs:
 
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge to main branch
+        if: success()
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Asegurar que tenemos las últimas actualizaciones
+          git fetch origin main dependencies
+          
+          # Merge PR en dependencies
+          gh pr merge --auto --squash "$PR_URL"
+          
+          # Cambiar a main y hacer merge desde origin/dependencies
+          git checkout main
+          git pull origin main
+          git merge origin/dependencies
+          
+          # Si el merge fue exitoso, hacer push
+          if [ $? -eq 0 ]; then
+            git push origin main
+          else
+            echo "❌ Error durante el merge"
+            git merge --abort
+            exit 1
+          fi
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
