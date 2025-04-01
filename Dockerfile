@@ -21,7 +21,7 @@ LABEL maintainer="Armando Castillo" \
 ENV APP_USER=tgbot \
     APP_UID=1000 \
     APP_HOME=/opt/app \
-    JAVA_OPTS="-Xms128m -Xmx256m"
+    JAVA_OPTS="-Xms64m -Xmx128m"
 
 RUN addgroup -g $APP_UID $APP_USER && \
     adduser -D -u $APP_UID -G $APP_USER $APP_USER && \
