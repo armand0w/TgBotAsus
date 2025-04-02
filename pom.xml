@@ -4,15 +4,15 @@
 
   <groupId>com.armandow.devices</groupId>
   <artifactId>TgBotAsus</artifactId>
-  <version>0.5.1</version>
+  <version>0.5.2</version>
   <packaging>jar</packaging>
 
   <name>TgBotAsus</name>
   <url>https://github.com/</url>
 
   <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>24</maven.compiler.source>
+    <maven.compiler.target>24</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -26,6 +26,7 @@
     <mockito.version>5.16.1</mockito.version>
     <jacoco.version>0.8.12</jacoco.version>
     <surefire-plugin.version>3.5.3</surefire-plugin.version>
+    <compiler-plugin.version>3.14.0</compiler-plugin.version>
     <shade-plugin.version>3.6.0</shade-plugin.version>
     <maven-jar.version>3.4.2</maven-jar.version>
     <awaitility.version>4.3.0</awaitility.version>
@@ -119,6 +120,21 @@
         <version>${surefire-plugin.version}</version>
         <configuration>
           <test>com.armandow.devices.DevicesBotTestSuite</test>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler-plugin.version}</version>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
 
