@@ -32,14 +32,15 @@ jobs:
             git commit -m "chore: remove deleted files" || true
           fi
           
-          # Attempt merge with theirs strategy
-          if ! git merge develop --squash -X theirs; then
+          # Attempt merge with squash strategy
+          if ! git merge develop --strategy=recursive --strategy-option=theirs --squash; then
             echo "⚠️ Merge conflict detected"
             git merge --abort || true
             exit 1
           fi
           
-          git commit -m "chore: sync with develop branch (squashed)"
+          # Commit squashed changes
+          git commit -m "chore: sync with develop branch (squashed)" || true
           git push origin dependencies
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
