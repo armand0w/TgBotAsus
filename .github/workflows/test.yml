@@ -23,6 +23,14 @@ jobs:
           java-version: '24'
           cache: maven
 
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Clone DBSQLite
         uses: actions/checkout@v4
         with:
@@ -40,19 +48,19 @@ jobs:
       - name: Storing config
         run: echo "${{ secrets.CONFIG }}" | base64 --decode > config.json
 
-      - name: Build
-        run: |
-          mvn --batch-mode -f DBSQLite/pom.xml -DskipTests install -e -B
-          mvn --batch-mode -f TgBotApi/pom.xml -DskipTests install -e -B
-          mvn --batch-mode -DskipTests -e -B package
-
       - name: Set TZ
         uses: szenius/set-timezone@v2.0
         with:
           timezoneLinux: "America/Mexico_City"
 
+      - name: Build
+        run: |
+          mvn -f DBSQLite/pom.xml -DskipTests install -e -B
+          mvn -f TgBotApi/pom.xml -DskipTests install -e -B
+          mvn -DskipTests -e -B package
+
       - name: Test
-        run: mvn --batch-mode -Dmaven.test.failure.ignore=true -e -B test
+        run: mvn test -Dmaven.test.failure.ignore=true -e -B
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           USER_ID: ${{ secrets.USER_ID }}
