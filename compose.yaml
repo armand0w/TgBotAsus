@@ -16,8 +16,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Mexico_City
-      - BOT_TOKEN=0123456789:tokenFromBotFather
-      - USER_ID=777777777
+      - BOT_TOKEN=${BOT_TOKEN}
+      - USER_ID=${USER_ID}
     configs:
       - source: bot_config
         target: /home/tgbot/config.json

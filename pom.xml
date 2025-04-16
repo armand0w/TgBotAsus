@@ -18,13 +18,13 @@
 
     <sqlite-jdbc.version>3.49.1.0</sqlite-jdbc.version>
 
-    <sentry.version>8.6.0</sentry.version>
+    <sentry.version>8.8.0</sentry.version>
     <lombok.version>1.18.38</lombok.version>
     <slf4j.version>2.0.17</slf4j.version>
-    <junit.version>5.12.1</junit.version>
-    <junit-suite.version>1.12.1</junit-suite.version>
-    <mockito.version>5.16.1</mockito.version>
-    <jacoco.version>0.8.12</jacoco.version>
+    <junit.version>5.12.2</junit.version>
+    <junit-suite.version>1.12.2</junit-suite.version>
+    <mockito.version>5.17.0</mockito.version>
+    <jacoco.version>0.8.13</jacoco.version>
     <surefire-plugin.version>3.5.3</surefire-plugin.version>
     <compiler-plugin.version>3.14.0</compiler-plugin.version>
     <shade-plugin.version>3.6.0</shade-plugin.version>
@@ -37,6 +37,12 @@
       <groupId>com.armandow</groupId>
       <artifactId>DBSQLite</artifactId>
       <version>0.0.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.armandow</groupId>
@@ -197,9 +203,18 @@
                   <artifact>*:*</artifact>
                   <excludes>
                     <exclude>config.json</exclude>
+                    <exclude>META-INF/maven/**</exclude>
+                    <exclude>META-INF/MANIFEST.MF</exclude>
+                    <exclude>META-INF/LICENSE.txt</exclude>
+                    <exclude>META-INF/versions/9/module-info*</exclude>
                   </excludes>
                 </filter>
               </filters>
+              <artifactSet>
+                <excludes>
+                  <exclude>org.json:json</exclude>
+                </excludes>
+              </artifactSet>
             </configuration>
           </execution>
         </executions>
