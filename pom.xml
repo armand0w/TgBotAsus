@@ -37,6 +37,12 @@
       <groupId>com.armandow</groupId>
       <artifactId>DBSQLite</artifactId>
       <version>0.0.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.armandow</groupId>
@@ -197,9 +203,18 @@
                   <artifact>*:*</artifact>
                   <excludes>
                     <exclude>config.json</exclude>
+                    <exclude>META-INF/maven/**</exclude>
+                    <exclude>META-INF/MANIFEST.MF</exclude>
+                    <exclude>META-INF/LICENSE.txt</exclude>
+                    <exclude>META-INF/versions/9/module-info*</exclude>
                   </excludes>
                 </filter>
               </filters>
+              <artifactSet>
+                <excludes>
+                  <exclude>org.json:json</exclude>
+                </excludes>
+              </artifactSet>
             </configuration>
           </execution>
         </executions>
