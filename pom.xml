@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>TgBotAsus</name>
-  <url>https://github.com/</url>
+  <url>https://github.com/armand0w/TgBotAsus</url>
 
   <properties>
     <maven.compiler.source>24</maven.compiler.source>

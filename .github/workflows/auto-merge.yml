@@ -33,39 +33,3 @@ jobs:
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Merge to develop branch
-        if: success()
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Asegurar que tenemos las últimas actualizaciones
-          git fetch origin develop dependencies
-          
-          # Merge PR en dependencies
-          gh pr merge --auto --squash "$PR_URL"
-          
-          # Cambiar a develop y hacer merge desde origin/dependencies
-          git checkout develop
-          git pull origin develop
-          
-          # Intentar merge con squash y strategy-option ours
-          if ! git merge origin/dependencies --squash -X ours; then
-            echo "⚠️ Merge conflict detectado - usando strategy-option ours con squash"
-            git reset --hard HEAD
-            git merge origin/dependencies --squash -X ours --no-commit
-            git commit -m "Merge dependencies branch (squashed, resolved conflicts with -X ours)"
-          else
-            git commit -m "Merge dependencies branch (squashed)" || true
-          fi
-          
-          # Use PAT token to trigger workflows
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/$GITHUB_REPOSITORY
-          git push origin develop || {
-            echo "❌ Error durante el push"
-            exit 1
-          }
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GH_PAT }}
