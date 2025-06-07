@@ -34,7 +34,8 @@ configs:
           "environment": "test"
         },
         "bot": {
-            "username": "raspgram_armand0w_bot"
+            "username": "raspgram_armand0w_bot",
+            "apiUpdate": 59000
         },
         "router": {
           "agent": "asusrouter-Android-DUTUtil-1.0.0.X.XX",

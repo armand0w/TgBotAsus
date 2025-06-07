@@ -60,7 +60,8 @@ public class DevicesUtils {
         var bot = new Bot(
                 System.getenv("BOT_TOKEN"),
                 jsonConfig.query("/bot/username").toString(),
-                Long.valueOf(System.getenv("USER_ID")));
+                Long.valueOf(System.getenv("USER_ID")),
+                Long.valueOf(jsonConfig.query("/bot/apiUpdate").toString()));
         var router = new Router(
                 jsonConfig.query("/router/agent").toString(),
                 jsonConfig.query("/router/ip").toString(),
