@@ -36,7 +36,7 @@ public class DevicesBot {
                 options.setDsn(DevicesUtils.getConfig().sentry().dsn());
                 options.setEnvironment(DevicesUtils.getConfig().sentry().environment());
 
-                if ( DevicesUtils.getConfig().sentry().environment().equalsIgnoreCase("pi3B") ) {
+                if ( DevicesUtils.getConfig().sentry().environment().equalsIgnoreCase("rpi4") ) {
                     options.setRelease(DevicesUtils.getRelease());
                 }
             });
@@ -54,7 +54,8 @@ public class DevicesBot {
 
         try {
             // Register telegram commands
-            var bot = new TelegramBot(DevicesUtils.getConfig().bot().token());
+            var botProps = DevicesUtils.getConfig().bot();
+            var bot = new TelegramBot(botProps.token(), botProps.apiUpdate());
             bot.registerCommand(new CurrentCommand());
             bot.run();
         } catch (Exception e) {
@@ -100,8 +101,10 @@ public class DevicesBot {
             var scheduler = Executors.newSingleThreadScheduledExecutor();
             var eService = Executors.newVirtualThreadPerTaskExecutor();
 
-            scheduler.scheduleWithFixedDelay(() -> eService.execute(new VerifyDeviceStatus()), 15, DevicesUtils.getConfig().scheduler().updateDevicesStatus(), SECONDS);
-            scheduler.scheduleWithFixedDelay(() -> eService.execute(new VerifyDeviceMetadata()), 45, DevicesUtils.getConfig().scheduler().updateDevicesMetadata(), SECONDS);
+            scheduler.scheduleWithFixedDelay(() -> eService.execute(new VerifyDeviceStatus()),
+                    15, DevicesUtils.getConfig().scheduler().updateDevicesStatus(), SECONDS);
+            scheduler.scheduleWithFixedDelay(() -> eService.execute(new VerifyDeviceMetadata()),
+                    45, DevicesUtils.getConfig().scheduler().updateDevicesMetadata(), SECONDS);
         } catch (Exception e) {
             log.error("Schedulers", e);
             Sentry.captureException(e);

@@ -23,14 +23,6 @@ jobs:
           java-version: '24'
           cache: maven
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
       - name: Clone DBSQLite
         uses: actions/checkout@v4
         with:
