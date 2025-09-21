@@ -20,7 +20,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
