@@ -14,24 +14,24 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set Up Java 24
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '24'
           cache: maven
 
       - name: Clone DBSQLite
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: 'develop'
           repository: 'armand0w/DBSQLite'
           path: DBSQLite
 
       - name: Clone TgBotApi
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: 'develop'
           repository: 'armand0w/TgBotApi'
