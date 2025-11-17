@@ -28,7 +28,7 @@
     <surefire-plugin.version>3.5.4</surefire-plugin.version>
     <compiler-plugin.version>3.14.1</compiler-plugin.version>
     <shade-plugin.version>3.6.1</shade-plugin.version>
-    <maven-jar.version>3.4.2</maven-jar.version>
+    <maven-jar.version>3.5.0</maven-jar.version>
     <awaitility.version>4.3.0</awaitility.version>
   </properties>
 
